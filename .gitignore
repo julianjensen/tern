@@ -3,5 +3,5 @@
 /misc
 *.elc
 *.pyc
-
+.idea/
 .DS_Store
