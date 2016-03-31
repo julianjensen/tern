@@ -22,6 +22,7 @@ class Obj extends Type
     constructor( proto, name )
     {
         if ( !this.props ) this.props = Object.create( null );
+        
         this.proto = proto === true ? cx.protos.Object : proto;
 
         if ( this.proto && !( this.proto instanceof Obj ) )

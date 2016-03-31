@@ -13,15 +13,14 @@ const
     misc = require( './misc' ),
     WG = misc.WG,
     Obj = require( './obj' ),
-    ANull = require( './anull' ),
     FnPrototype = require( './fn-prototype' ).FnPrototype;
 
-class Fn extends ANull
+class Fn extends Obj
 {
     // jshint -W072
     constructor( name, self, args, argNames, retval, generator )
     {
-        Obj.call( this, cx.protos.Function, name );
+        super( cx.protos.Function, name );
         this.self = self;
         this.args = args;
         this.argNames = argNames;
@@ -79,18 +78,18 @@ class Fn extends ANull
     {
         if ( prop === "prototype" )
         {
-            let found = this.hasProp( prop, false );
+            let found = this.hasProp( "prototype", false );
 
             if ( found ) return found;
 
-            found = Obj.prototype.defProp.call( this, prop, originNode );
+            found = super.defProp( prop, originNode );
             found.origin = this.origin;
             found.propagate( new FnPrototype( this ) );
 
             return found;
         }
 
-        return Obj.prototype.defProp.call( this, prop, originNode );
+        return super.defProp( prop, originNode );
     }
 
     getFunctionType()

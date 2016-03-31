@@ -79,7 +79,6 @@ class Arr extends Obj
         if ( +prop < this.tuple ) return prop;
         else return "<i>";
     }
-
 }
 
 module.exports = Arr;

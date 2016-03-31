@@ -69,7 +69,7 @@ function setFunctionInstantiated( node, fn )
             let oldOrigin = cx.curOrigin;
 
             cx.curOrigin = fn.origin;
-            let scope = node.scop,
+            let scope = node.scope,
                 scopeCopy = new Scope( scope.prev, scope.originNode );
 
             for ( let v in scope.props )

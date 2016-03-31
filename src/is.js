@@ -197,6 +197,33 @@ class IsBound extends ANull
     }
 }
 
+class HasMethodCall extends ANull
+{
+
+    constructor( propName, args, argNodes, retval )
+    {
+        this.propName = propName;
+        this.args = args;
+        this.argNodes = argNodes;
+        this.retval = retval;
+        this.disabled = cx.disabledComputing;
+    }
+
+    addType( obj, weight )
+    {
+        let callee = new IsCallee( obj, this.args, this.argNodes, this.retval );
+
+        callee.disabled = this.disabled;
+        obj.getProp( this.propName ).propagate( callee, weight );
+    }
+
+    propHint()
+    {
+        return this.propName;
+    }
+}
+
+
 
 module.exports.Callee = IsCallee;
 module.exports.Proto = IsProto;
@@ -204,6 +231,7 @@ module.exports.Added = IsAdded;
 module.exports.Ctor = IsCtor;
 module.exports.Created = IsCreated;
 module.exports.Bound = IsBound;
+module.exports.MethodCall = HasMethodCall;
 
 module.exports.Integer = function( str ) {
     let c0 = str.charCodeAt( 0 );

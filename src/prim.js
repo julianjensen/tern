@@ -35,6 +35,11 @@ class Prim extends Type
     {
         if ( this.proto ) this.proto.gatherProperties( f, depth );
     }
+
+    reached()
+    {
+        return true;
+    }
 }
 
 module.exports = Prim;

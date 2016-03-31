@@ -18,7 +18,8 @@
     "enhanced-resolve": "^0.9.1",
     "glob": "3",
     "minimatch": "0.2",
-    "typescript": "=1.0.1"
+    "typescript": "=1.0.1",
+      "lodash": "latest"
   },
   "devDependencies": {
     "codemirror": "git://github.com/codemirror/CodeMirror.git"
